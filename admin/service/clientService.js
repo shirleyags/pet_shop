@@ -4,5 +4,5 @@ const clientList = async () => {
 }
 
 export const clientService = {
-  clientList
+  clientList,
 }
