@@ -20,8 +20,15 @@ const createNewLine = (name, email) => {
 
 const table = document.querySelector('[data-tabela]')
 
-clientService.clientList().then((data) => {
-  data.forEach((element) => {
-    table.appendChild(createNewLine(element.name, element.email))
-  })
-})
+const loadClientList = async () => {
+  try {
+    const data = await clientService.clientList()
+    data.forEach((element) => {
+      table.appendChild(createNewLine(element.name, element.email))
+    })
+  } catch (error) {
+    console.error('Não foi possível listar os clientes:', error.message)
+  }
+}
+
+loadClientList()
