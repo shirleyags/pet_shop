@@ -29,3 +29,7 @@
 .botao-simples--editar {
   color: var(--cor-sucesso);
 }
+
+.botao--cursor-mao {
+  cursor: pointer;
+}

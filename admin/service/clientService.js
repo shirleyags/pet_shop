@@ -33,7 +33,18 @@ const createClient = async (name, email) => {
   }
 }
 
+const removeClient = async (id) => {
+  try {
+    return await fetch(`http://localhost:3000/profile/${id}`, {
+      method: 'DELETE'
+    })
+  } catch (error) {
+    throw error
+  }
+}
+
 export const clientService = {
   clientList,
-  createClient
+  createClient,
+  removeClient
 }
