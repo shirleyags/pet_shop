@@ -10,7 +10,7 @@ const createNewLine = (name, email, id) => {
           <a href="../telas/edita_cliente.html" class="botao-simples botao-simples--editar">Editar</a>
         </li>
         <li>
-          <button class="botao-simples botao-simples--excluir" type="button">Excluir</button>
+          <button class="botao-simples botao-simples--excluir botao--cursor-mao" type="button">Excluir</button>
         </li>
       </ul>
     </td>`
@@ -23,7 +23,8 @@ const table = document.querySelector('[data-tabela]')
 
 table.addEventListener('click', async (event) => {
   const deleteButton =
-    event.target.className === 'botao-simples botao-simples--excluir'
+    event.target.className ===
+    'botao-simples botao-simples--excluir botao--cursor-mao'
   if (deleteButton) {
     const clientLine = event.target.closest('[data-id]')
     const id = clientLine.dataset.id
