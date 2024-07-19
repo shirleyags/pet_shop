@@ -7,8 +7,10 @@ form.addEventListener('submit', async (event) => {
   const email = event.target.querySelector('[data-email]').value
 
   try {
-    await clientService.createClient(name, email)
-    window.location.href = '../telas/cadastro_concluido.html'
+    const response = await clientService.createClient(name, email)
+    if (response) {
+      window.location.href = '../telas/cadastro_concluido.html'
+    }
   } catch (error) {
     console.error('Erro ao cadastrar cliente:', error.message)
   }
