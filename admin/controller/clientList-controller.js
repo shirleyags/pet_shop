@@ -7,7 +7,7 @@ const createNewLine = (name, email, id) => {
     <td>
       <ul class="tabela__botoes-controle">
         <li>
-          <a href="../telas/edita_cliente.html" class="botao-simples botao-simples--editar">Editar</a>
+          <a href="../telas/edita_cliente.html?id=${id}" class="botao-simples botao-simples--editar">Editar</a>
         </li>
         <li>
           <button class="botao-simples botao-simples--excluir botao--cursor-mao" type="button">Excluir</button>
@@ -28,16 +28,22 @@ table.addEventListener('click', async (event) => {
   if (deleteButton) {
     const clientLine = event.target.closest('[data-id]')
     const id = clientLine.dataset.id
-    try {
-      await clientService.removeClient(id)
-      clientLine.remove()
-    } catch (error) {
-      console.error('Não foi possível remover o cliente:', error.message)
+    const confirmDelete = confirm(
+      'Tem certeza que deseja excluir este cliente?'
+    )
+    if (confirmDelete) {
+      try {
+        await clientService.removeClient(id)
+        clientLine.remove()
+      } catch (error) {
+        console.error('Não foi possível remover o cliente:', error.message)
+        window.location.href = '../telas/erro.html'
+      }
     }
   }
 })
 
-const loadClientList = async () => {
+const render = async () => {
   try {
     const data = await clientService.clientList()
     data.forEach((element) => {
@@ -45,7 +51,8 @@ const loadClientList = async () => {
     })
   } catch (error) {
     console.error('Não foi possível listar os clientes:', error.message)
+    window.location.href = '../telas/erro.html'
   }
 }
 
-loadClientList()
+render()
