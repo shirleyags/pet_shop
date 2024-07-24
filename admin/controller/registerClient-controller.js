@@ -13,5 +13,6 @@ form.addEventListener('submit', async (event) => {
     }
   } catch (error) {
     console.error('Erro ao cadastrar cliente:', error.message)
+    window.location.href = '../telas/erro.html'
   }
 })
